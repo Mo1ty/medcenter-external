@@ -1,0 +1,26 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li> <a routerLink="/">Back to Main Page</a> </li>
+        <li> <a routerLink="/our-doctors">About us</a> </li>
+        <li> <a routerLink="/contacts">Contacts</a> </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" appDropdown>
+          <a style="cursor: pointer;" class="dropdown-toggle" role="button">My Account <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li> <a style="cursor: pointer;" *ngIf="isAuthenticated" routerLinkActive="active" routerLink="/profile">Profile</a> </li>
+            <li> <a style="cursor: pointer;" *ngIf="isAuthenticated" (click)="onFetchData()">Visits History</a> </li>
+            <li> <a style="cursor: pointer;" *ngIf="isAuthenticated" (click)="onSwitchLogin()">Logout</a> </li>
+
+            <li>
+              <a style="cursor: pointer;" *ngIf="!isAuthenticated" (click)="onAuth(false)">Create Account</a>
+            </li>
+            <li> <a style="cursor: pointer;" *ngIf="!isAuthenticated" (click)="onSwitchLogin()">Login</a> </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

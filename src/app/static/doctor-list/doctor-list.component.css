@@ -1,0 +1,25 @@
+.doctor-box {
+  border: solid 2px;
+  margin: 7vh 4% 5vh 4%; /* top - right - bottom - left */
+  height: 55vh;
+  width: 25vw;
+}
+
+.doctor-box-head {
+  margin: 1.5vh 0vw 1vh 0vw;
+  text-align: left;
+  font-size: 2.5vw;
+}
+
+.doctor-box-text {
+  margin: 1.5vh 0vw 1vh 0vw;
+  text-align: left;
+  font-size: 1.5vw;
+}
+
+.doctor-box-image {
+  margin: 1.5vh 0vw 1vh 0vw;
+  float: right;
+  max-width: 40%;
+  max-height: 60%;
+}

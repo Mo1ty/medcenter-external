@@ -1,0 +1,7 @@
+<div class="row" style="width: 100vw;">
+    <div class="col-xs-12 doctor-box" *ngFor="let doctor of doctorList">
+      <img class="doctor-box-image" src="../../../assets/images/photoPlaceholder.png" alt="error" style="size: 30px;">
+      <h2 class="doctor-box-head">{{ doctor.firstName }} {{ doctor.lastName }} </h2>
+      <p class="doctor-box-text">{{ doctor.description }}</p>
+    </div>
+</div>
