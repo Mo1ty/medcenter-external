@@ -10,7 +10,7 @@
         <li class="dropdown" appDropdown>
           <a style="cursor: pointer;" class="dropdown-toggle" role="button">My Account <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li> <a style="cursor: pointer;" *ngIf="isAuthenticated" routerLinkActive="active" routerLink="/profile">Profile</a> </li>
+            <li> <a style="cursor: pointer;" *ngIf="isAuthenticated" (click)="onGetProfile()">Profile</a> </li>
             <li> <a style="cursor: pointer;" *ngIf="isAuthenticated" (click)="onFetchData()">Visits History</a> </li>
             <li> <a style="cursor: pointer;" *ngIf="isAuthenticated" (click)="onSwitchLogin()">Logout</a> </li>
 

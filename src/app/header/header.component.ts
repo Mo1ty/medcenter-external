@@ -1,6 +1,7 @@
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProfileDataStorageService } from '../profile/profile-data-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,10 @@ export class HeaderComponent implements OnInit {
 
   @Output('isAuthLogin') isAuthLogin = new EventEmitter<boolean>();
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private profileDataStorage: ProfileDataStorageService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -27,4 +31,8 @@ export class HeaderComponent implements OnInit {
     this.isAuthenticated = !this.isAuthenticated;
   }
 
+  onGetProfile(){
+    this.profileDataStorage.getProfileData(4);
+    this.router.navigate(['profile']);
+  }
 }

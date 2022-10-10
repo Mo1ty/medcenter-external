@@ -1,9 +1,9 @@
 export class Profile {
 
   constructor(
-    private clientId: number,
+    public clientId: number,
     private firstName: string,
-    private lastName: string,
+    public lastName: string,
     private email: string,
     private addressId: number
   ){}

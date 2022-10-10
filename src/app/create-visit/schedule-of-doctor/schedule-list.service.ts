@@ -15,7 +15,7 @@ export class ScheduleListService implements OnInit {
 
   today = new Date(new Date().setHours(0,0,0,0));
 
-  firstDay = this.today.getDate() - this.today.getDay();
+  firstDay = this.today.getDate() - this.today.getDay() + 2;
 
   firstWeekDay = new Date(this.today.setDate(this.firstDay));
   lastWeekDay =  new Date(this.today.setDate(this.firstDay + 7));

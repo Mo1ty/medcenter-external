@@ -1,20 +1,29 @@
 import { Injectable } from "@angular/core";
-import { ProfileDataStorageService } from "./profile-data-storage.service";
-import { Profile } from "./profile.model";
+import { Subject } from "rxjs";
+import { Profile } from "../shared/model/profile.model";
 
 @Injectable({providedIn: 'root'})
 export class ProfileService {
 
-  constructor(private dataStorage: ProfileDataStorageService){}
+  // IMPLEMENT FETCHING PROFILE DATA ON INIT
 
-  profileInfo: Profile;
+  constructor(){}
+
+  profileUpdated = new Subject<Profile>();
+
+  profileInfo: Profile = new Profile(0, "", "", "", 0);
 
   userId: number = 4;
 
   // http://localhost:8080/internal/clients/
 
   getProfileData(){
+    return structuredClone(this.profileInfo);
+  }
 
+  setProfileInfo(profile: Profile){
+    this.profileInfo = profile;
+    this.profileUpdated.next(this.profileInfo);
   }
 
 }

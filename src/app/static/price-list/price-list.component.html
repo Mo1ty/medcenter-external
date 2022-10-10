@@ -1,1 +1,5 @@
 <p>price-list works!</p>
+<div class="row col-xs-12" style="border: solid 1px; margin: 1px;" *ngFor="let treatment of priceList">
+  <p>Name: {{ treatment.treatmentName }}</p>
+  <p>Price: {{ treatment.price }}</p>
+</div>
