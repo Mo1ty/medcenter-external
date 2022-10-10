@@ -1,19 +1,34 @@
 import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
+import { CommonDataStorageService } from "src/app/shared/common-data-storage.service";
 import { Doctor } from "src/app/shared/model/doctor.model";
+import { VisitService } from "../visit.service";
 
 @Injectable({providedIn:'root'})
 export class DoctorListService {
 
-  private doctors: Doctor[] = [
-    new Doctor(1, "Oleg", "Proch 1", "Lorem"),
-    new Doctor(2, "Anna", "Test 2", "Ipsum"),
-    new Doctor(3, "Žanna", "Bom 3", "Dolor sit amet")
-  ];
+  constructor(
+    private commonStorage: CommonDataStorageService,
+    private visitService: VisitService
+  ){}
+
+  doctorsChanged = new Subject<Doctor[]>();
+  private doctorsList: Doctor[] = [];
 
   getDoctors(){
-    console.log("IN SERVICE");
-    console.log(this.doctors);
-    return this.doctors.slice();
+    const treatmentId = this.visitService.getVisitData().treatmentDoneId;
+
+    this.commonStorage.getDoctorsByTreatment(treatmentId).subscribe(
+      (doctors) =>
+      {
+        this.doctorsList = doctors;
+        this.doctorsChanged.next(this.doctorsList);
+      }
+    );
+  }
+
+  getDoctorsList(){
+    return this.doctorsList.slice();
   }
 
 }

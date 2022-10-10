@@ -14,7 +14,6 @@ export class PriceListComponent implements OnInit {
   constructor(private priceListService: PriceListService) { }
 
   ngOnInit(): void {
-    console.log("hi!");
     this.priceListService.fetchFromServer();
     this.priceListService.pricesChanged.subscribe(
       (treatments) => {
@@ -22,7 +21,6 @@ export class PriceListComponent implements OnInit {
       }
     );
     this.priceList = this.priceListService.getPriceList();
-    console.log(this.priceList);
   }
 
 }

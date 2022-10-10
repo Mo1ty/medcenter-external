@@ -1,19 +1,45 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from "@angular/core";
+import { Subject } from "rxjs";
+import { CommonDataStorageService } from "src/app/shared/common-data-storage.service";
 import { Treatment } from "src/app/shared/model/treatment.model";
+import { VisitService } from "../visit.service";
 
 @Injectable({providedIn:'root'})
 export class TreatmentListService {
 
-  private treatments: Treatment[] = [
-    new Treatment(1, "test 1", 200),
-    new Treatment(2, "test 2", 400),
-    new Treatment(3, "test 3", 600)
-  ];
+  treatmentsChanged = new Subject<Treatment[]>();
+  private treatmentsList: Treatment[] = [];
+
+  constructor(
+    private commonStorage: CommonDataStorageService,
+    private visitService: VisitService){}
+
+  // 'http://localhost:8080/internal/treatment/3/doctors'
 
   getTreatments(){
-    console.log("IN SERVICE");
-    console.log(this.treatments);
-    return this.treatments.slice();
+    this.commonStorage.getTreatments().subscribe(
+      (treatments: Treatment[]) => {
+        console.log(treatments);
+        this.treatmentsList = treatments;
+        this.treatmentsChanged.next(this.treatmentsList);
+      });
+  }
+
+  getTreatmentsByDoc(){
+    const docId = this.visitService.getVisitData().doctorAcceptedId;
+    console.log(this.visitService.getVisitData());
+    console.log(docId);
+    this.commonStorage.getTreatmentsByDoctor(docId).subscribe(
+      (treatments: Treatment[]) => {
+        console.log(treatments);
+        this.treatmentsList = treatments;
+        this.treatmentsChanged.next(this.treatmentsList);
+      });
+
+  }
+
+  getTreatmentsList(){
+    return this.treatmentsList.slice();
   }
 
 }

@@ -32,7 +32,6 @@ export class HeaderComponent implements OnInit {
   }
 
   onGetProfile(){
-    this.profileDataStorage.getProfileData(4);
     this.router.navigate(['profile']);
   }
 }

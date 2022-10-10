@@ -21,9 +21,12 @@ export class DoctorTreatmentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.doctors = this.doctorListService.getDoctors();
-    console.log("IN COMPONENT");
-    console.log(this.doctors);
+    this.doctorListService.getDoctors();
+    this.doctorListService.doctorsChanged.subscribe(
+      (doctorsList) => this.doctors = doctorsList
+    );
+
+    this.doctors = this.doctorListService.getDoctorsList();
   }
 
   onClick(index: number) {

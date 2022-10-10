@@ -1,8 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Doctor } from "./model/doctor.model";
+import { Profile } from "./model/profile.model";
 import { Treatment } from "./model/treatment.model";
-import { exhaustMap, map, take, tap } from "rxjs/operators";
-import { PriceListService } from "../static/price-list/price-list.service";
+// import { exhaustMap, map, take, tap } from "rxjs/operators";
 
 @Injectable({providedIn: 'root'})
 export class CommonDataStorageService {
@@ -11,8 +12,22 @@ export class CommonDataStorageService {
   constructor(
     private httpClient: HttpClient){}
 
+  getProfileData(userId: number) {
+    return this.httpClient.get<Profile>("http://localhost:8080/internal/clients/" + userId);
+  }
+
   getTreatments(){
     return this.httpClient.get<Treatment[]>("http://localhost:8080/internal/treatment");
+  }
+
+  getTreatmentsByDoctor(doctorId: number){
+    return this.httpClient.get<Treatment[]>
+      ("http://localhost:8080/internal/doctors/" + doctorId + "/treatments");
+  }
+
+  getDoctorsByTreatment(treatmentId: number){
+    return this.httpClient.get<Doctor[]>
+      ("http://localhost:8080/internal/treatment/" + treatmentId + "/doctors");
   }
 
 }

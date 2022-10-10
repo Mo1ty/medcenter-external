@@ -13,14 +13,6 @@ export class ProfileDataStorageService{
         //private authService: AuthService
     ){}
 
-    getProfileData(userId: number) {
-      this.httpClient.get<Profile>("http://localhost:8080/internal/clients/" + userId).subscribe(
-        (profile) => {
-          this.profileService.setProfileInfo(profile);
-        }
-      );
-    }
-
     getProfileAddress(addressId: number) {
       this.httpClient.get("http://localhost:8080/internal/addresses/" + addressId).subscribe(
         (address) => console.log(address)

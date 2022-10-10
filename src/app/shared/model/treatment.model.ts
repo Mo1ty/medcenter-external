@@ -3,6 +3,7 @@ export class Treatment {
   constructor(
     public treatmentId: number,
     public treatmentName: string,
-    public price: number){}
+    public price: number
+  ){}
 
 }

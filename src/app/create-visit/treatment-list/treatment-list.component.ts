@@ -22,9 +22,14 @@ export class TreatmentListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.treatments = this.treatmentListService.getTreatments();
-    console.log("IN COMPONENT");
-    console.log(this.treatments);
+    this.treatmentListService.getTreatments();
+
+    this.treatmentListService.treatmentsChanged.subscribe(
+      (treatments) => {
+        this.treatments = treatments;
+      }
+    );
+    this.treatments = this.treatmentListService.getTreatmentsList();
   }
 
   onClick(index: number) {

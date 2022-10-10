@@ -9,6 +9,13 @@ import { ProfileService } from './profile.service';
 })
 export class ProfileComponent implements OnInit {
 
+  profileId: number = 4;
+  /*  Either make it get id
+      from a common source, where
+      token & other data will be located,
+      or implement it straight
+      into profile-data storage service
+      after successful authentication   */
   profileInfo!: Profile;
 
   constructor(private profileService: ProfileService) { }
@@ -19,7 +26,7 @@ export class ProfileComponent implements OnInit {
         this.profileInfo = profile
       }
     )
-    this.profileInfo = this.profileService.getProfileData();
+    this.profileService.getProfileData(this.profileId);
   }
 
 }
