@@ -12,18 +12,15 @@ export class TreatmentListService {
 
   constructor(
     private commonStorage: CommonDataStorageService,
-    private visitService: VisitService){}
+    private visitService: VisitService){
+      this.commonStorage.getTreatments().subscribe(
+        (treatments: Treatment[]) => {
+          this.treatmentsList = treatments;
+          this.treatmentsChanged.next(this.treatmentsList);
+        });
+    }
 
   // 'http://localhost:8080/internal/treatment/3/doctors'
-
-  getTreatments(){
-    this.commonStorage.getTreatments().subscribe(
-      (treatments: Treatment[]) => {
-        console.log(treatments);
-        this.treatmentsList = treatments;
-        this.treatmentsChanged.next(this.treatmentsList);
-      });
-  }
 
   getTreatmentsByDoc(){
     const docId = this.visitService.getVisitData().doctorAcceptedId;

@@ -22,8 +22,6 @@ export class TreatmentListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.treatmentListService.getTreatments();
-
     this.treatmentListService.treatmentsChanged.subscribe(
       (treatments) => {
         this.treatments = treatments;

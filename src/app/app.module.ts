@@ -13,7 +13,8 @@ import { ContactsComponent } from './static/contacts/contacts.component';
 import { CreateVisitModule } from './create-visit/create-visit.module';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule } from '@angular/forms';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './account/profile/profile.component';
+import { VisitHistoryComponent } from './account/visit-history/visit-history.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ProfileComponent } from './profile/profile.component';
     DropdownDirective,
     ContactsComponent,
     AuthComponent,
-    ProfileComponent
+    ProfileComponent,
+    VisitHistoryComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Doctor } from "./model/doctor.model";
 import { Profile } from "./model/profile.model";
 import { Treatment } from "./model/treatment.model";
+import { Visit } from "./model/visit.model";
 // import { exhaustMap, map, take, tap } from "rxjs/operators";
 
 @Injectable({providedIn: 'root'})
@@ -10,7 +11,8 @@ export class CommonDataStorageService {
 
 
   constructor(
-    private httpClient: HttpClient){}
+    private httpClient: HttpClient
+  ){}
 
   getProfileData(userId: number) {
     return this.httpClient.get<Profile>("http://localhost:8080/internal/clients/" + userId);
@@ -28,6 +30,11 @@ export class CommonDataStorageService {
   getDoctorsByTreatment(treatmentId: number){
     return this.httpClient.get<Doctor[]>
       ("http://localhost:8080/internal/treatment/" + treatmentId + "/doctors");
+  }
+
+  getPreviousVisitsByClient(clientId: number){
+    return this.httpClient.get<Visit[]>
+      ("http://localhost:8080/internal/visits/history/" + clientId);
   }
 
 }

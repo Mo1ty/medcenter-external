@@ -1,7 +1,7 @@
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProfileDataStorageService } from '../profile/profile-data-storage.service';
+import { ProfileDataStorageService } from '../account/profile/profile-data-storage.service';
 
 @Component({
   selector: 'app-header',

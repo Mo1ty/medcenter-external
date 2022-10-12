@@ -21,6 +21,10 @@ export class DoctorTreatmentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if(!this.visitService.getVisitData().treatmentDoneId){
+      this.router.navigate(["../"], {relativeTo: this.activatedRoute});
+      return;
+    }
     this.doctorListService.getDoctors();
     this.doctorListService.doctorsChanged.subscribe(
       (doctorsList) => this.doctors = doctorsList

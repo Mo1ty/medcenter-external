@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Profile } from '../shared/model/profile.model';
+import { Profile } from '../../shared/model/profile.model';
 import { ProfileService } from './profile.service';
 
 @Component({

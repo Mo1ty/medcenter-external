@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
-import { CommonDataStorageService } from "../shared/common-data-storage.service";
-import { Profile } from "../shared/model/profile.model";
+import { CommonDataStorageService } from "../../shared/common-data-storage.service";
+import { Profile } from "../../shared/model/profile.model";
 
 @Injectable({providedIn: 'root'})
 export class ProfileService {
