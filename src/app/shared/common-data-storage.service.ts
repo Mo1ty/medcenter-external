@@ -37,4 +37,9 @@ export class CommonDataStorageService {
       ("http://localhost:8080/internal/visits/history/" + clientId);
   }
 
+  getOccupiedDatesByDoctor(doctorId: number){
+    return this.httpClient.get<number[]>
+      ("http://localhost:8080/internal/visits/timetable/" + doctorId);
+  }
+
 }

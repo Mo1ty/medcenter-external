@@ -1,0 +1,64 @@
+.grey-box{
+  width: 50px;
+  height: 40px;
+  background-color: rgb(216, 216, 216);
+  outline: 1px solid;
+  text-align: center;
+}
+
+.time-free-box{
+  width: 60px;
+  height: 40px;
+  background-color: rgb(79, 239, 79);
+  outline: 1px solid;
+
+  text-align: center;
+}
+
+.time-occupied-box{
+  width: 60px;
+  height: 40px;
+  background-color: rgb(228, 95, 95);
+  outline: 1px solid;
+
+  text-align: center;
+}
+
+.time-unav-box{
+  width: 60px;
+  height: 40px;
+  background-color: rgb(144, 144, 144);
+  outline: 1px solid;
+
+  text-align: center;
+}
+
+.grey-box-mini {
+  width: 10px;
+  height: 40px;
+  background-color: rgb(216, 216, 216);
+  outline: 1px solid;
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 4px 4px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.top-box {
+  display: flex;
+  align-items: center;
+  background-color: rgb(216, 216, 216);
+}

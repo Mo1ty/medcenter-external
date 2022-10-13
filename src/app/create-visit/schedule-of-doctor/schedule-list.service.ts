@@ -1,7 +1,28 @@
 import { Injectable } from "@angular/core";
 
 export enum WeekDays {
-  MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+  SUN,
+  MON,
+  TUE,
+  WED,
+  THU,
+  FRI,
+  SAT
+}
+
+export enum Months {
+  January,
+  February,
+  March,
+  April,
+  May,
+  June,
+  July,
+  August,
+  September,
+  October,
+  November,
+  December
 }
 
 export interface Week {
@@ -141,56 +162,22 @@ export class ScheduleListService {
     secsInterval = secsInterval || 3600;
     secsInterval = secsInterval < 86400 ? secsInterval : 86400;
 
-    let startingDate = structuredClone(week.firstDay);
+    let countDate = structuredClone(week.firstDay);
+
     let scheduleArray: Array<Array<Date>> = [];
 
-     for(let day = week.firstDay.getDate(); day < week.lastDay.getDate(); day++) {
-
+    for(let day = 0; day < 7; day++) {
       let dates: Date[] = [];
+      countDate.setHours(startTime, 0, 0, 0);
 
-      while(day == startingDate.getDate()){
-
-        let newDate = startingDate;
-
-        if(newDate.getHours() >= startTime && newDate.getHours() < endTime){
-          dates.push(newDate);
-        }
-        // startingDate.setSeconds(startingDate.getSeconds() + secsInterval);
-        startingDate = new Date(startingDate.getTime() + secsInterval * 1000);
-
+      while(countDate.getHours() < endTime){
+        dates.push(structuredClone(countDate));
+        countDate = new Date(countDate.getTime() + secsInterval * 1000);
       }
 
+      countDate.setDate(countDate.getDate() + 1);
       scheduleArray.push(dates.slice());
     }
-
     return scheduleArray;
-
   }
-
-  /*private addTime(knownDate: Date, secsInterval: number): ExtendedTime {
-    let days: number;
-    let hours: number;
-    let minutes: number;
-    let seconds = knownDate.getUTCSeconds() + secsInterval;
-
-    if(seconds >= 60){
-      minutes = Math.floor(seconds / 60);
-      seconds -= minutes * 60;
-    }
-
-    minutes += knownDate.getUTCMinutes();
-    if(minutes >= 60){
-      hours = Math.floor(minutes / 60);
-      minutes -= hours * 60;
-    }
-
-    hours += knownDate.getUTCHours();
-
-    return {
-      days: hours >= 24 ? 1 : 0,
-      hours: hours < 24 ? hours : hours - 24,
-      minutes: minutes,
-      seconds: seconds
-    }
-  }*/
 }

@@ -9,7 +9,7 @@ import { Visit } from "src/app/shared/model/visit.model";
 @Injectable({providedIn: 'root'})
 export class VisitHistoryService {
 
-  clientId = 10; // must be received from storage
+  clientId = 4; // must be retrieved from storage
 
   visitsHistoryChanged = new Subject<HistoryVisit[]>();
   private visitsHistory: HistoryVisit[] = [];

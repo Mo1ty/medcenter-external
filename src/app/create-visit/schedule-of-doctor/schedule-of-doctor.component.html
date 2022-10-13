@@ -1,9 +1,25 @@
 <p>schedule-of-doctor works!</p>
-<p>First day: {{ firstDay }}</p>
-<p>Last day: {{ lastDay }}</p>
 
-<div *ngFor="let day of dates">
-  <ul *ngFor="let time of day">
-    <li>{{ time }}</li>
-  </ul>
+<div style="display: flex; align-items: center;">
+  <p (click)="onClickPrev()"><i class="arrow left"></i></p>
+  <p> {{  formatMonth(week.firstDay)  }}, {{ week.firstDay.getDate() }} -
+    {{  formatMonth(week.lastDay)  }}, {{ week.lastDay.getDate() }}</p>
+  <p (click)="onClickNext()"><i class="arrow right"></i></p>
+</div>
+<div style="display: flex;" *ngFor="let day of dates">
+  <div class="grey-box">
+    <p>{{  formatWeekDay(day[0])  }}</p>
+  </div>
+  <div style="display: flex;" *ngFor="let time of day">
+    <div class="time-free-box" *ngIf="checkAvailability(time) == 1" (click)="onTimeClick(time)">
+      <p>{{ formatTime(time) }}</p>
+    </div>
+    <div class="time-occupied-box" *ngIf="checkAvailability(time) == 0">
+      <p>{{ formatTime(time) }}</p>
+    </div>
+    <div class="time-unav-box" *ngIf="checkAvailability(time) == 2">
+      <p>{{ formatTime(time) }}</p>
+    </div>
+    <div class="grey-box-mini"></div>
+  </div>
 </div>
