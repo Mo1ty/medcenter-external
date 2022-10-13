@@ -19,7 +19,6 @@ export class VisitHistoryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.visitHistoryService.getVisitsHistory(this.clientId);
 
     this.visitHistoryService.visitsHistoryChanged.subscribe(
       (historyVisits: HistoryVisit[]) => this.historyVisits = historyVisits

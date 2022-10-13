@@ -7,12 +7,9 @@ export class ProfileDataStorageService{
 
     constructor(
         private httpClient: HttpClient,
-        private profileService: ProfileService
     ){}
 
     getProfileAddress(addressId: number) {
-      this.httpClient.get("http://localhost:8080/internal/addresses/" + addressId).subscribe(
-        (address) => console.log(address)
-      )
+      return this.httpClient.get("http://localhost:8080/internal/addresses/" + addressId);
     }
 }

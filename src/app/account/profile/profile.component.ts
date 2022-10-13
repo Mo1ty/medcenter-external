@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Address } from 'src/app/shared/model/address.model';
 import { Profile } from '../../shared/model/profile.model';
 import { ProfileService } from './profile.service';
 
@@ -17,16 +18,24 @@ export class ProfileComponent implements OnInit {
       into profile-data storage service
       after successful authentication   */
   profileInfo!: Profile;
+  addressInfo!: Address;
 
   constructor(private profileService: ProfileService) { }
 
   ngOnInit(): void {
     this.profileService.profileUpdated.subscribe(
       (profile) => {
-        this.profileInfo = profile
+        this.profileInfo = profile;
       }
     )
-    this.profileService.getProfileData(this.profileId);
+    this.profileInfo = this.profileService.getProfileInfo();
+
+    this.profileService.addressUpdated.subscribe(
+      (address) => {
+        this.addressInfo = address;
+      }
+    )
+    this.addressInfo = this.profileService.getAddressInfo();
   }
 
 }
