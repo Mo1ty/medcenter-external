@@ -1,5 +1,4 @@
 import { Treatment } from "./treatment.model";
-import { Visit } from "./visit.model";
 
 export class HistoryVisit {
 

@@ -6,3 +6,17 @@
 <p>Street: {{ addressInfo.street }}</p>
 <p>House: {{ addressInfo.houseNumber }}</p>
 <p></p>
+
+<div class="row col-xs-12">
+  <div class="col-xs-12">
+  <button class="btn btn-primary"  [routerLink]="['./previous']">
+    Open visits history
+  </button> |
+  <button class="btn btn-primary" [routerLink]="['./pending']">
+    View pending visits
+  </button>
+  </div>
+  <div class="col-xs-12">
+    <router-outlet></router-outlet>
+  </div>
+</div>

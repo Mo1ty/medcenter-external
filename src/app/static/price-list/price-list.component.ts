@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from 'src/app/shared/common.service';
 import { Treatment } from 'src/app/shared/model/treatment.model';
-import { PriceListService } from './price-list.service';
 
 @Component({
   selector: 'app-price-list',
@@ -11,16 +11,16 @@ export class PriceListComponent implements OnInit {
 
   priceList: Treatment[];
 
-  constructor(private priceListService: PriceListService) { }
+  constructor(private commonService: CommonService) { }
 
   ngOnInit(): void {
-    this.priceListService.fetchFromServer();
-    this.priceListService.pricesChanged.subscribe(
+    this.commonService.fetchTreatmentsFromServer();
+    this.commonService.treatmentChanged.subscribe(
       (treatments) => {
         this.priceList = treatments;
       }
     );
-    this.priceList = this.priceListService.getPriceList();
+    this.priceList = this.commonService.getTreatmentList();
   }
 
 }

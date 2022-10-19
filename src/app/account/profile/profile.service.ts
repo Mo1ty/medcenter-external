@@ -1,14 +1,27 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { Address } from "src/app/shared/model/address.model";
+import { Doctor } from "src/app/shared/model/doctor.model";
+import { Treatment } from "src/app/shared/model/treatment.model";
+import { Visit } from "src/app/shared/model/visit.model";
 import { CommonDataStorageService } from "../../shared/common-data-storage.service";
 import { Profile } from "../../shared/model/profile.model";
 import { ProfileDataStorageService } from "./profile-data-storage.service";
+
+export interface ViewVisit {
+    visitId: number,
+    treatmentDoneId: Treatment,
+    clientVisitedId: number,
+    doctorAcceptedId: Doctor | number,
+    datetime: string
+};
 
 @Injectable({providedIn: 'root'})
 export class ProfileService {
 
   // IMPLEMENT FETCHING PROFILE DATA ON INIT
+
+  userId: number = 6;
 
   profileUpdated = new Subject<Profile>();
   addressUpdated = new Subject<Address>();
@@ -20,8 +33,7 @@ export class ProfileService {
     private commonStorage: CommonDataStorageService,
     private profileDataStorage: ProfileDataStorageService
   ){
-    const userId = 4;
-    this.commonStorage.getProfileData(userId).subscribe(
+    this.commonStorage.getProfileData(this.userId).subscribe(
       (profileData: Profile) => {
         console.log(profileData);
         this.profileInfo = profileData;

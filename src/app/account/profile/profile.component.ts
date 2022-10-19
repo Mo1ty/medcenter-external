@@ -37,5 +37,4 @@ export class ProfileComponent implements OnInit {
     )
     this.addressInfo = this.profileService.getAddressInfo();
   }
-
 }

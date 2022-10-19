@@ -9,7 +9,6 @@ import { Visit } from "./model/visit.model";
 @Injectable({providedIn: 'root'})
 export class CommonDataStorageService {
 
-
   constructor(
     private httpClient: HttpClient
   ){}
@@ -37,9 +36,22 @@ export class CommonDataStorageService {
       ("http://localhost:8080/internal/visits/history/" + clientId);
   }
 
+  getPendingVisitsByClient(clientId: number){
+    return this.httpClient.get<Visit[]>
+      ("http://localhost:8080/internal/visits/pending/" + clientId);
+  }
+
   getOccupiedDatesByDoctor(doctorId: number){
     return this.httpClient.get<number[]>
       ("http://localhost:8080/internal/visits/timetable/" + doctorId);
   }
 
+  getAllDoctors(){
+    return this.httpClient.get<Doctor[]>
+    ("http://localhost:8080/internal/doctors");
+  }
+
+  deleteVisit(visitId: number) {
+    this.httpClient.delete("http://localhost:8080/internal/visits/" + visitId).subscribe();
+  }
 }

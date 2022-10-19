@@ -1,0 +1,9 @@
+<div class="row col-xs-12" style="display: flex; border: solid 1px; margin: 1px;" *ngFor="let visit of visits">
+  <p>{{ visit.datetime }} - {{ visit.treatmentDoneId.treatmentName }} - {{ visit.treatmentDoneId.price }} </p>
+  <button class="btn btn-danger btn-sm"
+    style="margin-left: 20px; margin-right: 20px;"
+    (click)="onDelete(visit.visitId)">
+      Cancel Visit
+  </button>
+</div>
+

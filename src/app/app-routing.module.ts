@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
-import { CreateVisitComponent } from './create-visit/create-visit.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { ProfileComponent } from './account/profile/profile.component';
 import { ContactsComponent } from './static/contacts/contacts.component';
 import { DoctorListComponent } from './static/doctor-list/doctor-list.component';
 import { PriceListComponent } from './static/price-list/price-list.component';
-import { VisitHistoryComponent } from './account/visit-history/visit-history.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
@@ -15,8 +12,10 @@ const appRoutes: Routes = [
   { path: 'our-doctors', component: DoctorListComponent },
   { path: 'price-list', component: PriceListComponent },
   { path: 'contacts', component: ContactsComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'visits-history', component: VisitHistoryComponent },
+  {
+    path: 'profile',
+    loadChildren: () => import('./account/profile/profile.module').then(mod => mod.ProfileModule)
+  },
   {
     path: 'create-visit',
     loadChildren: () => import('./create-visit/create-visit.module').then(mod => mod.CreateVisitModule)

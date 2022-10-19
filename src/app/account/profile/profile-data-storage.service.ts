@@ -12,4 +12,6 @@ export class ProfileDataStorageService{
     getProfileAddress(addressId: number) {
       return this.httpClient.get("http://localhost:8080/internal/addresses/" + addressId);
     }
+
+
 }

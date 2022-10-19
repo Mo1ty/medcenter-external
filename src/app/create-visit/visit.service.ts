@@ -8,7 +8,7 @@ export class VisitService {
 
   visitChanged = new Subject<Visit>();
 
-  private visitData: Visit = new Visit(0,0,4,0, new Date(0));
+  private visitData: Visit = new Visit(0,0,6,0, new Date(0));
   // Put this data into one common file
 
   updateTreatment(treatmentId: number) {
