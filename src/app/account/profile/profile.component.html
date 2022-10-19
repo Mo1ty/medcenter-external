@@ -2,21 +2,82 @@
 <p>Surname: {{ profileInfo.lastName }}</p>
 <p>Email: {{ profileInfo.email }}</p>
 <hr>
-<p>City: {{ addressInfo.city }}</p>
-<p>Street: {{ addressInfo.street }}</p>
-<p>House: {{ addressInfo.houseNumber }}</p>
-<p></p>
+<div class="row col-xs-12">
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="editMode">
+    <div class="row">
+      <div class="col-sm-5 form-group">
+        <label for="city">City</label>
+        <input
+          type="text"
+          id="city"
+          class="form-control"
+          name="city"
+          ngModel
+          required
+        >
+      </div>
+      <div class="col-sm-2 form-group">
+        <label for="street">Street</label>
+        <input
+          type="text"
+          id="street"
+          class="form-control"
+          name="street"
+          ngModel
+          required
+        >
+      </div>
+      <div class="col-sm-2 form-group">
+        <label for="house">House Number</label>
+        <input
+          type="number"
+          id="house"
+          class="form-control"
+          name="house"
+          ngModel
+          required
+          pattern="^[1-9]+[0-9]*$"
+        >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12" *ngIf="editMode">
+        <button class="btn btn-success" type="submit" [disabled]="!f.valid">Submit</button> |
+        <button class="btn btn-danger"
+        type="button"
+        (click)="onEditSwitch()"
+        *ngIf="editMode">Cancel</button>
+      </div>
+    </div>
+  </form>
+  <div class="col-xs-12" style="display: flex;" *ngIf="!editMode">
+    <div class="row col-xs-12">
+      <p>City: {{ addressInfo.city }}</p>
+      <p>Street: {{ addressInfo.street }}</p>
+      <p>House: {{ addressInfo.houseNumber }}</p>
+    </div>
+    <button class="btn btn-primary"
+    type="button"
+    (click)="onEditSwitch()">Edit Address</button>
+  </div>
+
+  <br><hr><br>
+
+  <div class="col-xs-12">
+    <button class="btn btn-primary"  [routerLink]="['./previous']">
+      Open visits history
+    </button> |
+    <button class="btn btn-primary" [routerLink]="['./pending']">
+      View pending visits
+    </button>
+    </div>
+    <div class="col-xs-12">
+      <router-outlet></router-outlet>
+    </div>
+</div>
+
+<br><br><br>
 
 <div class="row col-xs-12">
-  <div class="col-xs-12">
-  <button class="btn btn-primary"  [routerLink]="['./previous']">
-    Open visits history
-  </button> |
-  <button class="btn btn-primary" [routerLink]="['./pending']">
-    View pending visits
-  </button>
-  </div>
-  <div class="col-xs-12">
-    <router-outlet></router-outlet>
-  </div>
+
 </div>

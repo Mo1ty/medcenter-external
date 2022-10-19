@@ -11,13 +11,13 @@
     <p>{{  formatWeekDay(day[0])  }}</p>
   </div>
   <div style="display: flex;" *ngFor="let time of day">
-    <div class="time-free-box" *ngIf="checkAvailability(time) == 1" (click)="onTimeClick(time)">
+    <div class="time-free-box" style="cursor: pointer;" *ngIf="checkAvailability(time) == 1" (click)="onTimeClick(time)">
       <p>{{ formatTime(time) }}</p>
     </div>
-    <div class="time-occupied-box" *ngIf="checkAvailability(time) == 0">
+    <div class="time-occupied-box" style="cursor: not-allowed;" *ngIf="checkAvailability(time) == 0">
       <p>{{ formatTime(time) }}</p>
     </div>
-    <div class="time-unav-box" *ngIf="checkAvailability(time) == 2">
+    <div class="time-unav-box" style="cursor: not-allowed;" *ngIf="checkAvailability(time) == 2">
       <p>{{ formatTime(time) }}</p>
     </div>
     <div class="grey-box-mini"></div>

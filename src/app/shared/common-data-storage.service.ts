@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Address } from "./model/address.model";
 import { Doctor } from "./model/doctor.model";
 import { Profile } from "./model/profile.model";
 import { Treatment } from "./model/treatment.model";
@@ -49,9 +50,5 @@ export class CommonDataStorageService {
   getAllDoctors(){
     return this.httpClient.get<Doctor[]>
     ("http://localhost:8080/internal/doctors");
-  }
-
-  deleteVisit(visitId: number) {
-    this.httpClient.delete("http://localhost:8080/internal/visits/" + visitId).subscribe();
   }
 }

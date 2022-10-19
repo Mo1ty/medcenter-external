@@ -64,4 +64,7 @@ export class ProfileService {
     return structuredClone(this.addressInfo);
   }
 
+  deleteVisit(visitId) {
+    return this.profileDataStorage.deleteVisit(visitId);
+  }
 }

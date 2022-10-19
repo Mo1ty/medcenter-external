@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VisitDataService } from '../visit-data-storage.service';
+import { VisitService } from '../visit.service';
 
 @Component({
   selector: 'app-confirmation-page',
@@ -9,14 +11,21 @@ import { VisitDataService } from '../visit-data-storage.service';
 export class ConfirmationPageComponent implements OnInit {
 
   constructor(
-    private visitStorage: VisitDataService
+    private visitStorage: VisitDataService,
+    private visitService: VisitService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-
+    if(!this.visitService.getVisitData().datetime.getTime()){
+      this.router.navigate(["../"], {relativeTo: this.activatedRoute});
+      return;
+    }
   }
 
   onPostData() {
     this.visitStorage.sendVisit();
+    this.router.navigate(["/"]);
   }
 }

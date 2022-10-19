@@ -35,7 +35,8 @@ export class PendingVisitsService {
   }
 
   deleteVisit(visitId: number){
-    this.commonStorage.deleteVisit(visitId);
-    this.visitStorage.getClientsVisits(true);
+    this.profileService.deleteVisit(visitId).subscribe(
+      () => this.visitStorage.getClientsVisits(true)
+    );
   }
 }
