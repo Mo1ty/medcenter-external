@@ -1,6 +1,5 @@
 import { ViewVisit } from "src/app/account/profile/profile.service";
 import { Doctor } from "./doctor.model";
-import { HistoryVisit } from "./history-visit.model";
 import { Treatment } from "./treatment.model";
 
 export class Visit {
@@ -25,18 +24,6 @@ export class Visit {
       datetime: this.datetime.toLocaleString()
     }
 
-  }
-
-
-  toHistoryVisit(treatmentList: Treatment[]): HistoryVisit{
-    let treatment: Treatment = treatmentList.find(trtmnt => trtmnt.treatmentId === this.treatmentDoneId);
-    return new HistoryVisit(
-      this.visitId,
-      treatment,
-      this.clientVisitedId,
-      this.doctorAcceptedId,
-      this.datetime
-    )
   }
 
 }

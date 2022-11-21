@@ -24,7 +24,7 @@ export class CommonDataStorageService {
 
   getTreatmentsByDoctor(doctorId: number){
     return this.httpClient.get<Treatment[]>
-      ("http://localhost:8080/internal/doctors/" + doctorId + "/treatments");
+      ("http://localhost:8080/internal/doctor/" + doctorId + "/treatments");
   }
 
   getDoctorsByTreatment(treatmentId: number){
@@ -49,6 +49,6 @@ export class CommonDataStorageService {
 
   getAllDoctors(){
     return this.httpClient.get<Doctor[]>
-    ("http://localhost:8080/internal/doctors");
+    ("http://localhost:8080/internal/doctor");
   }
 }

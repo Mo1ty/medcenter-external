@@ -14,9 +14,8 @@
             <li> <a style="cursor: pointer;" *ngIf="isAuthenticated" (click)="onSwitchLogin()">Logout</a> </li>
 
             <li>
-              <a style="cursor: pointer;" *ngIf="!isAuthenticated" (click)="onAuth(false)">Create Account</a>
+              <a style="cursor: pointer;" *ngIf="!isAuthenticated" (click)="onAuth(false)">Authenticate</a>
             </li>
-            <li> <a style="cursor: pointer;" *ngIf="!isAuthenticated" (click)="onSwitchLogin()">Login</a> </li>
           </ul>
         </li>
       </ul>

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -9,25 +10,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AuthComponent implements OnInit {
 
-  // @Input("isAuthLogin") isLogin;
-  // Find the way to turn it on while pressing different buttons (mb function in header component)
-
-  isLogin = true;
+  isLogin = false;
 
   constructor(
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    /*this.activatedRoute.queryParams.subscribe(
-      event => {
-        console.log(event);
-        console.log(event.isLogin);
-        this.isLogin = event.isLogin;
-        console.log(this.isLogin);
-      }
-    )*/
+
   }
 
   onSwitch(){
@@ -36,6 +28,22 @@ export class AuthComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     console.log(form.value);
+    if(!form.valid) {
+      return;
+    }
+    const email = form.value.email;
+    const password = form.value.password;
+
+    if(this.isLogin) {
+
+    } else {
+      this.authService.signup(email, password).subscribe(
+        {
+          next: (responseData) => { console.log(responseData) },
+          error: (error) => { console.error(error) }
+        }
+        );
+    }
     form.reset();
   }
 

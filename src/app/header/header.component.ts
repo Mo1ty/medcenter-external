@@ -10,14 +10,16 @@ import { ProfileDataStorageService } from '../account/profile/profile-data-stora
 })
 export class HeaderComponent implements OnInit {
 
-  isAuthenticated = true;
+  isAuthenticated = false;
 
   @Output('isAuthLogin') isAuthLogin = new EventEmitter<boolean>();
 
   constructor(
     private router: Router,
     private profileDataStorage: ProfileDataStorageService
-  ) { }
+  ) {
+
+   }
 
   ngOnInit(): void {
   }

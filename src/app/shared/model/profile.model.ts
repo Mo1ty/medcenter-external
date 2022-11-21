@@ -1,11 +1,13 @@
+import { Contact } from "./contact.model";
+import { LoyaltyLevel } from "./loyalty.model";
+
 export class Profile {
 
   constructor(
     public clientId: number,
-    public firstName: string,
-    public lastName: string,
-    public email: string,
-    public addressId: number
+    public contact: Contact | number,
+    public totalSpent: number,
+    public loyaltyLevel: LoyaltyLevel | number
   ){}
 
 }

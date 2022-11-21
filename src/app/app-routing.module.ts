@@ -1,24 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/auth.guard';
 import { MainPageComponent } from './main-page/main-page.component';
 import { ContactsComponent } from './static/contacts/contacts.component';
 import { DoctorListComponent } from './static/doctor-list/doctor-list.component';
-import { PriceListComponent } from './static/price-list/price-list.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'main', component: MainPageComponent },
   { path: 'our-doctors', component: DoctorListComponent },
-  { path: 'price-list', component: PriceListComponent },
   { path: 'contacts', component: ContactsComponent },
   {
     path: 'profile',
-    loadChildren: () => import('./account/profile/profile.module').then(mod => mod.ProfileModule)
-  },
-  {
-    path: 'create-visit',
-    loadChildren: () => import('./create-visit/create-visit.module').then(mod => mod.CreateVisitModule)
+    loadChildren: () => import('./account/profile/profile.module').then(mod => mod.ProfileModule),
+    canActivate: [AuthGuard]
   },
   { path: 'auth', component: AuthComponent },
 

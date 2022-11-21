@@ -4,13 +4,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PriceListComponent } from './static/price-list/price-list.component';
 import { DoctorListComponent } from './static/doctor-list/doctor-list.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { HeaderComponent } from './header/header.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { ContactsComponent } from './static/contacts/contacts.component';
-import { CreateVisitModule } from './create-visit/create-visit.module';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './account/profile/profile.component';
@@ -21,7 +19,6 @@ import { PendingVisitsComponent } from './account/profile/pending-visits/pending
 @NgModule({
   declarations: [
     AppComponent,
-    PriceListComponent,
     DoctorListComponent,
     MainPageComponent,
     HeaderComponent,
@@ -34,8 +31,7 @@ import { PendingVisitsComponent } from './account/profile/pending-visits/pending
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,
-    CreateVisitModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -26,7 +26,7 @@ export class ProfileService {
   profileUpdated = new Subject<Profile>();
   addressUpdated = new Subject<Address>();
 
-  profileInfo: Profile = new Profile(0, '', '', '', 0);
+  profileInfo: Profile = new Profile(0, 0, 0, 0);
   addressInfo: Address = new Address(0, '', '', '', 0);
 
   constructor(
@@ -38,13 +38,6 @@ export class ProfileService {
         console.log(profileData);
         this.profileInfo = profileData;
         this.profileUpdated.next(this.profileInfo);
-
-        this.profileDataStorage.getProfileAddress(profileData.addressId).subscribe(
-          (address: Address) => {
-            this.addressInfo = address;
-            this.addressUpdated.next(this.addressInfo);
-          }
-        )
       });
 
   }
