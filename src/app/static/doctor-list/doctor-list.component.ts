@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from 'src/app/shared/common.service';
 import { Doctor } from 'src/app/shared/model/doctor.model';
+import { DoctorService } from 'src/app/shared/service/doctor.service';
 
 @Component({
   selector: 'app-doctor-list',
@@ -11,16 +11,16 @@ export class DoctorListComponent implements OnInit {
 
   doctorsList: Doctor[];
 
-  constructor(private commonService: CommonService) { }
+  constructor(private doctorService: DoctorService) { }
 
   ngOnInit(): void {
-    this.commonService.fetchDoctorsFromServer();
-    this.commonService.doctorsChanged.subscribe(
+    this.doctorService.fetchDoctorsFromServer();
+    this.doctorService.doctorsChanged.subscribe(
       (doctors) => {
         this.doctorsList = doctors;
       }
     );
-    this.doctorsList = this.commonService.getDoctorsList();
+    this.doctorsList = this.doctorService.getDoctorsList();
   }
 
 }

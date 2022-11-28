@@ -1,42 +1,34 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
-import { CommonDataStorageService } from "src/app/shared/common-data-storage.service";
-import { ViewVisit, ProfileService } from "../profile.service";
-import { VisitStorageService } from "../visit-storage.service";
+import { ViewVisit } from "../../../shared/service/profile.service";
+import { VisitService } from "src/app/shared/service/visit.service";
 
 @Injectable({providedIn: 'root'})
 export class PendingVisitsService {
-
 
   visitsList: ViewVisit[] = [];
   visitsListChanged = new Subject<ViewVisit[]>();
 
   constructor(
-    private commonStorage: CommonDataStorageService,
-    private profileService: ProfileService,
-    private visitStorage: VisitStorageService
+    private visitService: VisitService
   ){
-    this.visitStorage.getClientsVisits(true);
-    this.visitStorage.pendVisitViewsChanged.subscribe(
+    /*this.visitService.getPendingVisits();
+    this.visitService.pendVisitViewsChanged.subscribe(
       visitViews => {
         this.visitsList = visitViews;
         this.visitsListChanged.next(this.visitsList);
       }
-    );
+    );*/
   }
-
 
   getVisitsList(){
     return this.visitsList.slice();
   }
 
   toReadable(date: Date){
-    return this.visitStorage.toReadableDatetime(date);
+    return this.visitService.toReadableDatetime(date);
   }
 
   deleteVisit(visitId: number){
-    this.profileService.deleteVisit(visitId).subscribe(
-      () => this.visitStorage.getClientsVisits(true)
-    );
   }
 }

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileService, ViewVisit } from '../profile.service';
+import { ProfileService, ViewVisit } from '../../../shared/service/profile.service';
 import { PreviousVisitsService } from './previous-visits.service';
 
 @Component({
   selector: 'app-previous-visits',
   templateUrl: './previous-visits.component.html',
-  styleUrls: ['./previous-visits.component.css']
+  styleUrls: []
 })
 export class PreviousVisitsComponent implements OnInit {
 

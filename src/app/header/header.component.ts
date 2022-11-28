@@ -1,12 +1,12 @@
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProfileDataStorageService } from '../account/profile/profile-data-storage.service';
+import { ProfileDataStorageService } from '../shared/data-storage/profile.data-storage.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: []
 })
 export class HeaderComponent implements OnInit {
 

@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
-import { CommonDataStorageService } from "./common-data-storage.service";
+import { VisitDataStorageService } from "./data-storage/visit.data-storage.service";
 import { Doctor } from "./model/doctor.model";
 import { Treatment } from "./model/treatment.model";
 
 @Injectable({providedIn: 'root'})
 export class CommonService {
 
-  constructor(private commonStorage: CommonDataStorageService){}
+  constructor(private commonStorage: VisitDataStorageService){}
 
   treatmentChanged = new Subject<Treatment[]>();
   treatmentList: Treatment[] = [];
@@ -29,12 +29,7 @@ export class CommonService {
   }
 
   fetchDoctorsFromServer(){
-    this.commonStorage.getAllDoctors().subscribe(
-      (doctors: Doctor[]) => {
-        this.doctorsList = doctors;
-        this.doctorsChanged.next(this.doctorsList);
-      }
-    )
+
   }
 
   getDoctorsList(){

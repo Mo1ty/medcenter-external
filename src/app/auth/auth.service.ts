@@ -3,12 +3,12 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, catchError, throwError } from "rxjs";
 import { getCookie } from 'typescript-cookie'
-import { User } from "./user.model";
+import { UserDetails } from "../shared/model/userdetails.model";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
 
-  user = new BehaviorSubject<User>(null);
+  user = new BehaviorSubject<UserDetails>(null);
   private tokenExpirationTimer: any;
 
   constructor(
@@ -16,7 +16,7 @@ export class AuthService {
       private router: Router){
   }
 
-  signup(email: string, password: string) {
+  register(email: string, password: string) {
     return this.httpClient.post(
       'http://localhost:8080/internal/auth/register',
       {
@@ -38,5 +38,11 @@ export class AuthService {
     }
     )
     );
+  }
+
+  loginUser(userDetails: UserDetails) {
+    console.log(userDetails);
+    window.sessionStorage.setItem("userdetails",JSON.stringify(userDetails));
+    return this.httpClient.get('http://localhost:8080/internal/auth/login', { observe: 'response',withCredentials: true });
   }
 }

@@ -1,8 +1,6 @@
-<p>Loyalty Level: {{ profileInfo.loyaltyLevel }}</p>
-<p>Total spent: {{ profileInfo.totalSpent }}</p>
+<p>Total spent: {{ clientInfo.totalSpent }}</p>
 <hr>
 <div class="row col-xs-12">
-  <!--
     <form (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="editMode">
     <div class="row">
       <div class="col-sm-5 form-group">
@@ -51,7 +49,6 @@
     </div>
 
   </form>
-  -->
   <div class="col-xs-12" style="display: flex;" *ngIf="!editMode">
     <div class="row col-xs-12">
       <p>City: {{ addressInfo.city }}</p>

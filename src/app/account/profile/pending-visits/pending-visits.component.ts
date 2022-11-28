@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewVisit } from '../profile.service';
+import { ViewVisit } from '../../../shared/service/profile.service';
 import { PendingVisitsService } from './pending-visits.service';
 
 @Component({
   selector: 'app-pending-visits',
   templateUrl: './pending-visits.component.html',
-  styleUrls: ['./pending-visits.component.css']
+  styleUrls: []
 })
 export class PendingVisitsComponent implements OnInit {
 

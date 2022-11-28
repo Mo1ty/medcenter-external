@@ -1,22 +1,18 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Address } from "./model/address.model";
-import { Doctor } from "./model/doctor.model";
-import { Profile } from "./model/profile.model";
-import { Treatment } from "./model/treatment.model";
-import { Visit } from "./model/visit.model";
+import { Address } from "../model/address.model";
+import { Doctor } from "../model/doctor.model";
+import { Client } from "../model/client.model";
+import { Treatment } from "../model/treatment.model";
+import { Visit } from "../model/visit.model";
 // import { exhaustMap, map, take, tap } from "rxjs/operators";
 
 @Injectable({providedIn: 'root'})
-export class CommonDataStorageService {
+export class VisitDataStorageService {
 
   constructor(
     private httpClient: HttpClient
   ){}
-
-  getProfileData(userId: number) {
-    return this.httpClient.get<Profile>("http://localhost:8080/internal/clients/" + userId);
-  }
 
   getTreatments(){
     return this.httpClient.get<Treatment[]>("http://localhost:8080/internal/treatment");
@@ -25,11 +21,6 @@ export class CommonDataStorageService {
   getTreatmentsByDoctor(doctorId: number){
     return this.httpClient.get<Treatment[]>
       ("http://localhost:8080/internal/doctor/" + doctorId + "/treatments");
-  }
-
-  getDoctorsByTreatment(treatmentId: number){
-    return this.httpClient.get<Doctor[]>
-      ("http://localhost:8080/internal/treatment/" + treatmentId + "/doctors");
   }
 
   getPreviousVisitsByClient(clientId: number){
@@ -42,13 +33,7 @@ export class CommonDataStorageService {
       ("http://localhost:8080/internal/visits/pending/" + clientId);
   }
 
-  getOccupiedDatesByDoctor(doctorId: number){
-    return this.httpClient.get<number[]>
-      ("http://localhost:8080/internal/visits/timetable/" + doctorId);
-  }
-
-  getAllDoctors(){
-    return this.httpClient.get<Doctor[]>
-    ("http://localhost:8080/internal/doctor");
+  deleteVisit(visitId: number) {
+    return this.httpClient.delete("http://localhost:8080/internal/visits/" + visitId);
   }
 }

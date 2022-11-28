@@ -1,26 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CommonDataStorageService } from 'src/app/shared/common-data-storage.service';
 import { Address } from 'src/app/shared/model/address.model';
-import { Profile } from '../../shared/model/profile.model';
-import { ProfileDataStorageService } from './profile-data-storage.service';
-import { ProfileService } from './profile.service';
+import { Client } from '../../shared/model/client.model';
+import { ProfileDataStorageService } from '../../shared/data-storage/profile.data-storage.service';
+import { ProfileService } from '../../shared/service/profile.service';
+import { Contact } from 'src/app/shared/model/contact.model';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: []
 })
 export class ProfileComponent implements OnInit {
 
-  profileId: number = 4;
-  /*  Either make it get id
-      from a common source, where
-      token & other data will be located,
-      or implement it straight
-      into profile-data storage service
-      after successful authentication   */
-  profileInfo!: Profile;
+  contactInfo!: Contact;
+  clientInfo!: Client;
   addressInfo!: Address;
 
   addressForm: FormGroup;
@@ -28,22 +22,23 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private profileService: ProfileService,
-    private commonStorage: ProfileDataStorageService
+    private profileDataStorage: ProfileDataStorageService
   ) { }
 
   ngOnInit(): void {
-    this.profileService.profileUpdated.subscribe(
+    this.profileService.clientUpdated.subscribe(
       (profile) => {
-        this.profileInfo = profile;
+        this.clientInfo = profile;
       }
     )
-    this.profileInfo = this.profileService.getProfileInfo();
+    this.clientInfo = this.profileService.clientInfo;
 
-    this.addressForm = new FormGroup({
-      'city': new FormControl(null, Validators.required),
-      'street': new FormControl(null, Validators.required),
-      'house':new FormControl(null, Validators.required),
-    })
+    this.profileService.contactUpdated.subscribe(
+      (contact) => {
+        this.contactInfo = contact;
+      }
+    )
+    this.contactInfo = this.profileService.contact;
 
     this.profileService.addressUpdated.subscribe(
       (address) => {
@@ -55,7 +50,14 @@ export class ProfileComponent implements OnInit {
         })
       }
     )
-    this.addressInfo = this.profileService.getAddressInfo();
+    this.addressInfo = this.profileService.addressInfo;
+
+    this.addressForm = new FormGroup({
+      'city': new FormControl(null, Validators.required),
+      'street': new FormControl(null, Validators.required),
+      'house':new FormControl(null, Validators.required),
+    })
+
   }
 
   onSubmit(form: FormGroup){
@@ -63,7 +65,7 @@ export class ProfileComponent implements OnInit {
     editAddress.city = form.controls['city'].value;
     editAddress.street = form.controls['street'].value;
     editAddress.houseNumber = form.controls['house'].value;
-    this.commonStorage.updateAddress(editAddress);
+    this.profileDataStorage.updateContactAddress(editAddress);
     this.addressInfo = editAddress;
     this.onEditSwitch();
   }
