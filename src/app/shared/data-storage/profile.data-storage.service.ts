@@ -17,7 +17,7 @@ export class ProfileDataStorageService {
   }
 
   getContactAddress(addressId: number) {
-    return this.httpClient.get("http://localhost:8080/internal/address/" + addressId);
+    return this.httpClient.get<Address>("http://localhost:8080/internal/address/" + addressId);
   }
 
   updateContactAddress(address: Address) {
@@ -26,7 +26,7 @@ export class ProfileDataStorageService {
   }
 
   getClientViaContact(clientId: number) {
-    return this.httpClient.get("http://localhost:8080/internal/client/" + clientId);
+    return this.httpClient.get("http://localhost:8080/internal/client/by-contact/" + clientId);
   }
 
   getLoyaltyLevel(loyaltyLevelId: number) {

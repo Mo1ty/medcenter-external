@@ -16,20 +16,14 @@ const appRoutes: Routes = [
     loadChildren: () => import('./account/profile/profile.module').then(mod => mod.ProfileModule),
     canActivate: [AuthGuard]
   },
-  { path: 'auth', component: AuthComponent },
-
-  /*{
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(mod => mod.AuthModule)
+  },
+  {
     path: 'create-visit',
-    children: [
-      { path: '', component: CreateVisitComponent },
-      { path: 'treatment', component: VisitTreatmentSetComponent },
-      { path: 'center', component: VisitCenterSetComponent },
-      { path: 'doctor', component: VisitDoctorSetComponent },
-      { path: 'schedule', component: VisitTimeSetComponent },
-      { path: 'confirmation-page', component: VisitConfirmComponent }
-    ]
-  }*/
-
+    loadChildren: () => import('./create-visit/create-visit.module').then(mod => mod.CreateVisitModule)
+  }
 ];
 
 @NgModule({

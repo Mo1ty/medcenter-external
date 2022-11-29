@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-5">
+    <p>ID of treatment: {{ visitView.treatmentDoneId }}</p>
+    <br><hr><br>
+    <p>ID of doctor: {{ visitView.doctorAcceptedId }}</p>
+    <br><hr><br>
+    <p>Time: {{ visitView.datetime }}</p>
+  </div>
+  <div class="col-md-7">
+    <router-outlet></router-outlet>
+  </div>
+</div>

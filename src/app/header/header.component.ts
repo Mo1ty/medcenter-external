@@ -1,5 +1,5 @@
 
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileDataStorageService } from '../shared/data-storage/profile.data-storage.service';
 

@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+      <div class="form-group mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          ngModel
+          name="email"
+          required
+          email
+          aria-describedby="emailHelp"
+        >
+        <div id="emailHelp" class="form-text">Your email stays private and will not be shared.</div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          ngModel
+          name="password"
+          required
+          minlength="6"
+          aria-describedby="pwdHelp"
+        >
+        <div id="pwdGelp" class="form-text">Your password has to be at least 6 characters long.</div>
+      </div>
+      <button type="submit" class="btn btn-primary">{{ isLogin ? 'Login' : 'Sign Up' }}</button>
+       |
+      <button class="btn btn-secondary" (click)="onSwitch()" type="button">Switch to {{ !isLogin ? 'Login' : 'Sign Up' }}</button>
+    </form>
+    <!--<form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+      <div class="form-group">
+        <label for="email">E-Mail</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          ngModel
+          name="email"
+          required
+          email
+        >
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          ngModel
+          name="password"
+          required
+          minlength="6"
+        >
+      </div>
+
+      <div class="col-xs-12 col-md-7 col-md-offset-5">
+        <button class="btn btn-primary" type="submit" [disabled]="!authForm.valid">
+          {{ isLogin ? 'Login' : 'Sign Up' }}
+        </button>
+        <br>
+        <button class="btn btn-sm btn-link" (click)="onSwitch()" type="button">Switch to {{ !isLogin ? 'Login' : 'Sign Up' }}</button>
+      </div>
+    </form>-->
+  </div>
+</div>
+
+

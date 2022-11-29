@@ -1,0 +1,12 @@
+<div *ngIf="treatments">
+  <div *ngFor="let treatment of treatments"
+    (click)="onClick(treatment.treatmentId)"
+    style="border: solid 1px; margin: 1px;">
+
+    <h4 class="list-group-item-heading">ID: {{ treatment.treatmentId }}</h4>
+    <p class="list-group-item-text">Name: {{ treatment.treatmentName }}</p>
+    <p class="list-group-item-text">Price: {{ treatment.price }}</p>
+
+  </div>
+</div>
+
