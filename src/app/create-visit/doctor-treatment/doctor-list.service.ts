@@ -18,7 +18,7 @@ export class DoctorListService {
   getDoctors(){
     const treatmentId = this.visitService.getVisitData().treatmentDoneId;
 
-    this.doctorService.getDoctorsBySpeciality(treatmentId);
+    this.doctorService.fetchDoctorsBySpeciality(treatmentId);
     this.doctorService
   }
 

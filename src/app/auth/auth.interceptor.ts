@@ -29,12 +29,17 @@ export class XhrInterceptor implements HttpInterceptor {
     }
     let xsrf = sessionStorage.getItem('XSRF-TOKEN');
     if(xsrf){
-      httpHeaders = httpHeaders.append('X-XSRF-TOKEN', xsrf);
+      console.log(xsrf);
+      httpHeaders = httpHeaders.append('XSRF-TOKEN', xsrf);
     }
+
     httpHeaders = httpHeaders.append('X-Requested-With', 'XMLHttpRequest');
     const xhr = req.clone({
       headers: httpHeaders
     });
+
+    this.consoleLogger("XHR", xhr);
+
     return next.handle(xhr).pipe(tap(
       (err: any) => {
         if (err instanceof HttpErrorResponse) {

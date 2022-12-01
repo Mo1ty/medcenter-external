@@ -15,8 +15,8 @@ export class VisitDataService {
   sendVisit() {
     const visitData: Visit = this.visitService.getVisitData();
     return this.httpClient.post(
-      "http://localhost:8080/internal/visits",
-      visitData
+      "//localhost:8080/visits",
+      visitData, {withCredentials: true},
       ).subscribe(response => console.log(response));
   }
 

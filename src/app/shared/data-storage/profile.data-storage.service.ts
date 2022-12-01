@@ -13,23 +13,23 @@ export class ProfileDataStorageService {
   ){}
 
   getContactData(userId: number) {
-    return this.httpClient.get<Contact>("http://localhost:8080/internal/contact/personal/" + userId);
+    return this.httpClient.get<Contact>("http://localhost:8080/contact/personal/" + userId);
   }
 
   getContactAddress(addressId: number) {
-    return this.httpClient.get<Address>("http://localhost:8080/internal/address/" + addressId);
+    return this.httpClient.get<Address>("http://localhost:8080/address/" + addressId);
   }
 
   updateContactAddress(address: Address) {
-    this.httpClient.put("http://localhost:8080/internal/address", address
+    this.httpClient.put("http://localhost:8080/address", address
       ).subscribe(response => console.log(response));
   }
 
   getClientViaContact(clientId: number) {
-    return this.httpClient.get("http://localhost:8080/internal/client/by-contact/" + clientId);
+    return this.httpClient.get("http://localhost:8080/client/by-contact/" + clientId);
   }
 
   getLoyaltyLevel(loyaltyLevelId: number) {
-    return this.httpClient.get("http://localhost:8080/internal/loyalty/" + loyaltyLevelId);
+    return this.httpClient.get("http://localhost:8080/loyalty/" + loyaltyLevelId);
   }
 }

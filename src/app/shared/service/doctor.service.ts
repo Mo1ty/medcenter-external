@@ -13,6 +13,9 @@ export class DoctorService {
   occupiedTime = new Subject<number[]>();
   occupiedTimesList: number[] = [];
 
+  docVisitChanged = new Subject<Doctor[]>();
+  docVisitList: Doctor[] = [];
+
   constructor(
     private doctorStorage: DoctorsDataStorageService
   ) {}
@@ -39,12 +42,16 @@ export class DoctorService {
     )
   }
 
-  getDoctorsBySpeciality(treatmentId: number) {
+  fetchDoctorsBySpeciality(treatmentId: number) {
     this.doctorStorage.getDoctorsBySpeciality(treatmentId).subscribe(
       (docs: Doctor[]) => {
-        this.doctorsList = docs;
-        this.doctorsChanged.next(this.doctorsList);
+        this.docVisitList = docs;
+        this.docVisitChanged.next(this.docVisitList);
       }
     )
+  }
+
+  getTreatmentDocs() {
+    return this.docVisitList.slice();
   }
 }

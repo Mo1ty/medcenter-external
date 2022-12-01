@@ -1,6 +1,7 @@
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 import { ProfileDataStorageService } from '../shared/data-storage/profile.data-storage.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private profileDataStorage: ProfileDataStorageService
+    private profileDataStorage: ProfileDataStorageService,
+    private authService: AuthService
   ) {
 
    }

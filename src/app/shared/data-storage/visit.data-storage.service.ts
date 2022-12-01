@@ -15,25 +15,25 @@ export class VisitDataStorageService {
   ){}
 
   getTreatments(){
-    return this.httpClient.get<Treatment[]>("http://localhost:8080/internal/treatment");
+    return this.httpClient.get<Treatment[]>("http://localhost:8080/treatment");
   }
 
   getTreatmentsByDoctor(doctorId: number){
     return this.httpClient.get<Treatment[]>
-      ("http://localhost:8080/internal/doctor/" + doctorId + "/treatments");
+      ("http://localhost:8080/doctor/" + doctorId + "/treatments");
   }
 
   getPreviousVisitsByClient(clientId: number){
     return this.httpClient.get<Visit[]>
-      ("http://localhost:8080/internal/visits/history/" + clientId);
+      ("http://localhost:8080/visits/history/" + clientId);
   }
 
   getPendingVisitsByClient(clientId: number){
     return this.httpClient.get<Visit[]>
-      ("http://localhost:8080/internal/visits/pending/" + clientId);
+      ("http://localhost:8080/visits/pending/" + clientId);
   }
 
   deleteVisit(visitId: number) {
-    return this.httpClient.delete("http://localhost:8080/internal/visits/" + visitId);
+    return this.httpClient.delete("http://localhost:8080/visits/" + visitId);
   }
 }

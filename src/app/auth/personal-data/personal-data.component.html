@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+      <div class="form-group mb-3">
+        <label for="firstName" class="form-label">First Name</label>
+        <input
+          type="text"
+          id="firstName"
+          class="form-control"
+          ngModel
+          name="firstName"
+          required
+        >
+      </div>
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input
+          type="text"
+          id="lastName"
+          class="form-control"
+          ngModel
+          name="lastName"
+          required
+        >
+      </div>
+      <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Phone number</label>
+        <input
+          type="text"
+          id="phoneNumber"
+          class="form-control"
+          ngModel
+          name="phoneNumber"
+          required
+          minlength="6"
+          aria-describedby="phoneHelp"
+        >
+        <div id="phoneHelp" class="form-text">Always add "+" symbol before the number.</div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+       |
+      <button class="btn btn-secondary" routerLink="../" type="button">Back</button>
+    </form>
+  </div>
+</div>

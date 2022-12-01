@@ -1,4 +1,4 @@
-<div class="row" style="width: 100vw;">
+<div class="container-fluid d-flex">
   <div class="col-xs-12 the-box">
     <h3 class="box-head">Perfect doctors</h3>
     <p class="box-text">
@@ -11,6 +11,17 @@
     </div>
   </div>
   <div class="col-xs-12 the-box">
+    <h3 class="box-head">Visit us when you want!</h3>
+    <p class="box-text">
+      Donec sem massa, viverra ac varius nec, vulputate non metus.
+      Curabitur vitae convallis nunc. Nam ut purus at erat dignissim vestibulum id vitae ligula.
+      Integer vitae nulla elementum, hendrerit nisl at, ultrices mauris.
+    </p>
+    <div class="col text-center">
+      <button class="btn btn-primary" (click)="onVisitClick()">Get the visit</button>
+    </div>
+  </div>
+  <div class="col-xs-12 the-box">
     <h3 class="box-head">Your data is safe</h3>
     <p class="box-text">
       Donec sem massa, viverra ac varius nec, vulputate non metus.
@@ -18,7 +29,7 @@
       Integer vitae nulla elementum, hendrerit nisl at, ultrices mauris.
     </p>
     <div class="col text-center">
-      <button class="btn btn-primary" (click)="onVisitClick()">Open your profile</button>
+      <button class="btn btn-primary" (click)="onProfileClick()">Open the profile</button>
     </div>
   </div>
 </div>

@@ -11,17 +11,17 @@ export class DoctorsDataStorageService {
 
   getDoctorsBySpeciality(specialityId: number){
     return this.httpClient.get<Doctor[]>
-      ("http://localhost:8080/internal/doctor/speciality/" + specialityId);
+      ("http://localhost:8080/doctor/speciality/" + specialityId);
   }
 
   getAllDoctors(){
     return this.httpClient.get<Doctor[]>
-    ("http://localhost:8080/internal/doctor");
+    ("http://localhost:8080/doctor");
   }
 
   getDoctorsTimetable(doctorId: number){
     return this.httpClient.get<number[]>
-      ("http://localhost:8080/internal/visits/timetable/" + doctorId);
+      ("http://localhost:8080/visits/timetable/" + doctorId);
   }
 
 }

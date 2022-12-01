@@ -55,6 +55,8 @@ export class AuthComponent implements OnInit {
 
           window.sessionStorage.setItem("XSRF-TOKEN", xsrf);
           this.consoleLogger("xsrf-token", window.sessionStorage.getItem('XSRF-TOKEN'));
+
+          this.authService.isAuth.next(true);
           this.router.navigate(["/"]);
         }
       );

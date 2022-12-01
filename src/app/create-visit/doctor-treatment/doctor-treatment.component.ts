@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Doctor } from 'src/app/shared/model/doctor.model';
+import { DoctorService } from 'src/app/shared/service/doctor.service';
 import { VisitService } from '../visit.service';
 import { DoctorListService } from './doctor-list.service';
 
@@ -14,7 +15,7 @@ export class DoctorTreatmentComponent implements OnInit {
   doctors: Doctor[] = [];
 
   constructor(
-    private doctorListService: DoctorListService,
+    private doctorService: DoctorService,
     private visitService: VisitService,
     private router: Router,
     private activatedRoute: ActivatedRoute
@@ -25,12 +26,15 @@ export class DoctorTreatmentComponent implements OnInit {
       this.router.navigate(["../"], {relativeTo: this.activatedRoute});
       return;
     }
-    this.doctorListService.getDoctors();
-    this.doctorListService.doctorsChanged.subscribe(
-      (doctorsList) => this.doctors = doctorsList
+    this.doctorService.fetchDoctorsBySpeciality(this.visitService.getVisitData().treatmentDoneId);
+    this.doctorService.docVisitChanged.subscribe(
+      (doctorsList) => {
+        console.log(doctorsList);
+        this.doctors = doctorsList
+      }
     );
 
-    this.doctors = this.doctorListService.getDoctorsList();
+    this.doctors = this.doctorService.getTreatmentDocs();
   }
 
   onClick(index: number) {

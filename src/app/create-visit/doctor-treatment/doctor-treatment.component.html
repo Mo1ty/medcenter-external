@@ -1,6 +1,6 @@
 <div *ngIf="doctors">
   <div *ngFor="let doctor of doctors"
-    (click)="onClick(doctor.id)"
+    (click)="onClick(doctor.doctorId)"
     style="border: solid 1px; margin: 1px;">
 
     <h4 class="list-group-item-heading">Name: {{ doctor.firstName }}</h4>

@@ -4,12 +4,14 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { AuthRoutingModule } from "./auth-routing.module";
 import { AuthenticateComponent } from './authenticate/authenticate.component';
+import { PersonalDataComponent } from './personal-data/personal-data.component';
+import { AddressDataComponent } from './address-data/address-data.component';
 
 @NgModule({
   declarations: [
-
-
-    AuthenticateComponent
+    AuthenticateComponent,
+    PersonalDataComponent,
+    AddressDataComponent
   ],
   imports: [
     RouterModule,

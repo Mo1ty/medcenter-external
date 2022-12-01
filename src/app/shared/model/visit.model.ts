@@ -9,21 +9,8 @@ export class Visit {
     public treatmentDoneId: number,
     public clientVisitedId: number,
     public doctorAcceptedId: number,
-    public datetime: Date
-  ) {
-
-
-  }
-
-  toViewVisit(this: Visit, treatment: Treatment, doctor?: Doctor): ViewVisit {
-    return {
-      visitId: this.visitId,
-      treatmentDoneId: treatment,
-      clientVisitedId: this.clientVisitedId,
-      doctorAcceptedId: doctor ? doctor : this.doctorAcceptedId,
-      datetime: this.datetime.toLocaleString()
-    }
-
-  }
-
+    public price: number = 600,
+    public datetime: Date,
+    public illnessDescription: string = "Nothing"
+  ) {}
 }

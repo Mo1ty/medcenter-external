@@ -22,7 +22,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'create-visit',
-    loadChildren: () => import('./create-visit/create-visit.module').then(mod => mod.CreateVisitModule)
+    loadChildren: () => import('./create-visit/create-visit.module').then(mod => mod.CreateVisitModule),
+    canActivate: [AuthGuard]
   }
 ];
 

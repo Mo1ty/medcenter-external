@@ -1,10 +1,10 @@
 export class Client {
 
   constructor(
-    public clientId: number,
+    public id: number,
     public contactId: number,
     public totalSpent: number,
-    public loyaltyLevel: number
+    public loyaltyLevelId: number
   ){}
 
 }

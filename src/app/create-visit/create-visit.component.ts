@@ -13,20 +13,12 @@ export class CreateVisitComponent implements OnInit {
 
   visitView: Visit;
 
-  /*{
-    visitId: "s",
-    treatmentDoneId: "s",
-    clientVisitedId: "s",
-    doctorAcceptedId: "s",
-    datetime: "s"
-  }*/
-
   ngOnInit(): void {
     this.visitService.visitChanged.subscribe(
       (visit: Visit) => this.visitView = visit
     );
     this.visitView = this.visitService.getVisitData();
-    console.log("Visit init")
+    console.log("Visit init");
   }
 
 }

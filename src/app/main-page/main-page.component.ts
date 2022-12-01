@@ -18,10 +18,10 @@ export class MainPageComponent implements OnInit {
   }
 
   onVisitClick() {
-    this.router.navigateByUrl('/profile');
+    this.router.navigateByUrl('/create-visit');
   }
 
-  onPriceListClick() {
-    this.router.navigateByUrl('/price-list');
+  onProfileClick() {
+    this.router.navigateByUrl('/profile');
   }
 }

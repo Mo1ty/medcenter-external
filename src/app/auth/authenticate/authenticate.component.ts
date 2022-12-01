@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LoginData } from 'src/app/shared/model/login.model';
 import { UserDetails } from 'src/app/shared/model/userdetails.model';
 import { getCookie } from 'typescript-cookie';
 import { AuthService } from '../auth.service';
@@ -14,9 +15,11 @@ export class AuthenticateComponent implements OnInit {
 
   isLogin = false;
   userDetails: UserDetails;
+  loginData: LoginData;
 
   constructor(
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private authService: AuthService
   ) { }
 
@@ -26,6 +29,7 @@ export class AuthenticateComponent implements OnInit {
 
   onSwitch(){
     this.isLogin = !this.isLogin;
+    console.log(this.isLogin);
   }
 
   onSubmit(form: NgForm) {
@@ -33,11 +37,13 @@ export class AuthenticateComponent implements OnInit {
     if(!form.valid) {
       return;
     }
-    this.userDetails = new UserDetails();
-    this.userDetails.email = form.value.email;
-    this.userDetails.password = form.value.password;
 
     if(this.isLogin) {
+
+      this.userDetails = new UserDetails();
+      this.userDetails.email = form.value.email;
+      this.userDetails.password = form.value.password;
+
       console.log("Login activated");
       this.authService.loginUser(this.userDetails).subscribe(
         (responseData) => {
@@ -51,17 +57,22 @@ export class AuthenticateComponent implements OnInit {
           let xsrf = getCookie('XSRF-TOKEN')!;
 
           window.sessionStorage.setItem("XSRF-TOKEN", xsrf);
-          this.router.navigate(["/"]);
+          this.router.navigate(["/main"]);
         }
       );
     }
     else {
-      /*this.authService.register(email, password).subscribe(
-        {
-          next: (responseData) => { console.log(responseData) },
-          error: (error) => { console.error(error) }
-        }
-        );*/
+
+      this.loginData = {
+        id: 0,
+        email: form.value.email,
+        password: form.value.password,
+        role: "ROLE_CLIENT"
+      }
+
+      this.authService.regData.loginData = this.loginData;
+
+      this.router.navigate(["personal"], {relativeTo: this.activatedRoute});
     }
     form.reset();
   }
