@@ -2,6 +2,7 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable, tap } from "rxjs";
+import { getCookie } from "typescript-cookie";
 import { UserDetails } from "../shared/model/userdetails.model";
 
 @Injectable()
@@ -27,10 +28,10 @@ export class XhrInterceptor implements HttpInterceptor {
         httpHeaders = httpHeaders.append('Authorization', authorization);
       }
     }
-    let xsrf = sessionStorage.getItem('XSRF-TOKEN');
+    let xsrf = getCookie('XSRF-TOKEN');
     if(xsrf){
       console.log(xsrf);
-      httpHeaders = httpHeaders.append('XSRF-TOKEN', xsrf);
+      httpHeaders = httpHeaders.append('X-XSRF-TOKEN', xsrf);
     }
 
     httpHeaders = httpHeaders.append('X-Requested-With', 'XMLHttpRequest');
@@ -38,15 +39,19 @@ export class XhrInterceptor implements HttpInterceptor {
       headers: httpHeaders
     });
 
-    this.consoleLogger("XHR", xhr);
+    this.consoleLogger("XHR", xhr)
 
     return next.handle(xhr).pipe(tap(
-      (err: any) => {
-        if (err instanceof HttpErrorResponse) {
-          if (err.status !== 401) {
+      (resp: any) => {
+        if (resp instanceof HttpErrorResponse) {
+          if (resp.status !== 401) {
             return;
           }
           this.router.navigate(['/']);
+        }
+        else {
+          let xsrf = getCookie("XSRF-TOKEN");
+          window.sessionStorage.setItem("X-XSRF-TOKEN", xsrf);
         }
       }));
   }

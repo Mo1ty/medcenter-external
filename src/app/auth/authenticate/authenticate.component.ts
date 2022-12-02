@@ -56,7 +56,7 @@ export class AuthenticateComponent implements OnInit {
 
           let xsrf = getCookie('XSRF-TOKEN')!;
 
-          window.sessionStorage.setItem("XSRF-TOKEN", xsrf);
+          window.sessionStorage.setItem("X-XSRF-TOKEN", xsrf);
           this.router.navigate(["/main"]);
         }
       );

@@ -49,13 +49,6 @@ export class AuthComponent implements OnInit {
           this.userDetails.isAuthenticated = true;
           window.sessionStorage.setItem("userdetails",JSON.stringify(this.userDetails));
 
-          let xsrf = getCookie('XSRF-TOKEN')!;
-
-          this.consoleLogger("CSRF", xsrf);
-
-          window.sessionStorage.setItem("XSRF-TOKEN", xsrf);
-          this.consoleLogger("xsrf-token", window.sessionStorage.getItem('XSRF-TOKEN'));
-
           this.authService.isAuth.next(true);
           this.router.navigate(["/"]);
         }
