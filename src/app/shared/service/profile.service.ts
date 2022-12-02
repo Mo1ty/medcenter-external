@@ -35,25 +35,16 @@ export class ProfileService {
   ){
     this.profileDataStorage.getContactData(this.userDetails.id).subscribe(
       (contactData: Contact) => {
-        console.log(contactData);
         this.contact = contactData;
         this.contactUpdated.next(this.contact);
 
         this.profileDataStorage.getContactAddress(contactData.addressId).subscribe(
           (addressData: Address) => {
-            console.log(addressData);
             this.addressInfo = addressData;
             this.addressUpdated.next(this.addressInfo);
           });
-
-        console.log("CALLING GET CLIENT!");
-        console.log("CALLING GET CLIENT!");
-        console.log("CALLING GET CLIENT!");
-        console.log(contactData.id);
-        console.log(contactData.addressId);
         this.profileDataStorage.getClientViaContact(contactData.id).subscribe(
           (clientData: Client) => {
-            console.log(clientData);
             this.clientInfo = clientData;
             this.clientUpdated.next(this.clientInfo);
           }

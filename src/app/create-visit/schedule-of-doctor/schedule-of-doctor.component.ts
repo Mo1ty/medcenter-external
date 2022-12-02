@@ -45,7 +45,6 @@ export class ScheduleOfDoctorComponent implements OnInit {
       this.week,
       3600
     );
-    console.log(this.dates);
   }
 
   formatTime(date: Date){ // Send to lib
@@ -73,7 +72,6 @@ export class ScheduleOfDoctorComponent implements OnInit {
 
   onTimeClick(time: Date){
     this.visitService.updateDatetime(time.getTime());
-    console.log(time);
     this.router.navigate(["../confirmation-page"], {relativeTo: this.activatedRoute});
   }
 

@@ -18,7 +18,6 @@ export class CreateVisitComponent implements OnInit {
       (visit: Visit) => this.visitView = visit
     );
     this.visitView = this.visitService.getVisitData();
-    console.log("Visit init");
   }
 
 }

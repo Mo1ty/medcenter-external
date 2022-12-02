@@ -30,7 +30,6 @@ export class XhrInterceptor implements HttpInterceptor {
     }
     let xsrf = getCookie('XSRF-TOKEN');
     if(xsrf){
-      console.log(xsrf);
       httpHeaders = httpHeaders.append('X-XSRF-TOKEN', xsrf);
     }
 
@@ -38,8 +37,6 @@ export class XhrInterceptor implements HttpInterceptor {
     const xhr = req.clone({
       headers: httpHeaders
     });
-
-    this.consoleLogger("XHR", xhr)
 
     return next.handle(xhr).pipe(tap(
       (resp: any) => {
@@ -55,11 +52,4 @@ export class XhrInterceptor implements HttpInterceptor {
         }
       }));
   }
-
-  consoleLogger(name: string, item: any): void {
-    console.log("START : " + name + " : START");
-    console.log(item);
-    console.log("END : " + name + " : END")
-  }
-
 }

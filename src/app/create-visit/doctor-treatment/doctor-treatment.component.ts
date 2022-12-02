@@ -29,7 +29,6 @@ export class DoctorTreatmentComponent implements OnInit {
     this.doctorService.fetchDoctorsBySpeciality(this.visitService.getVisitData().treatmentDoneId);
     this.doctorService.docVisitChanged.subscribe(
       (doctorsList) => {
-        console.log(doctorsList);
         this.doctors = doctorsList
       }
     );
@@ -40,7 +39,6 @@ export class DoctorTreatmentComponent implements OnInit {
   onClick(index: number) {
     this.visitService.updateDoctor(index);
     this.router.navigate(["../", "schedule"], {relativeTo: this.activatedRoute});
-    console.log(index);
   }
 
 }
